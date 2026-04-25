@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Aimi 🐱</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive;
+    background: linear-gradient(135deg, #ffeef2, #e0f7fa);
+    overflow-x: hidden;
+    text-align: center;
+}
+
+h1 {
+    color: #ff4d6d;
+    margin-top: 30px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    width: 70%;
+    margin: auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+button {
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+button:hover {
+    background: #ff2e55;
+}
+
+/* Floating cats */
+.cat {
+    position: absolute;
+    font-size: 30px;
+    animation: float 10s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-10vh); }
+}
+
+/* Note popup */
+#popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    width: 70%;
+    max-height: 70%;
+    overflow-y: auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    text-align: left;
+}
+
+#text {
+    white-space: pre-line;
+    font-size: 14px;
+}
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: red;
+    top: 0;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎉 Happy 17th Birthday, Aimi Nadhirah! 🐱☕🍵</h1>
+
+<div class="card">
+    <p>
+        To a hardworking, kind-hearted girl who deserves all the happiness 💕<br>
+        May 1st is all yours ✨
+    </p>
+
+    <button onclick="startSurprise()">Unlock Surprise 🐾</button>
+    <button onclick="toggleMusic()">🎵 Toggle Music</button>
+</div>
+
+<!-- Popup Note -->
+<div id="popup">
+    <h3>💌 A message for you</h3>
+    <p id="text"></p>
+</div>
+
+<!-- Music -->
+<audio id="music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3">
+</audio>
+
+<script>
+// Floating cats generator
+for(let i=0;i<15;i++){
+    let cat=document.createElement("div");
+    cat.className="cat";
+    cat.innerText="🐱";
+    cat.style.left=Math.random()*100+"vw";
+    cat.style.animationDuration=(5+Math.random()*10)+"s";
+    document.body.appendChild(cat);
+}
+
+// Confetti
+function confetti() {
+    for(let i=0;i<80;i++){
+        let c=document.createElement("div");
+        c.className="confetti";
+        c.style.left=Math.random()*100+"vw";
+        c.style.backgroundColor=`hsl(${Math.random()*360},100%,70%)`;
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),3000);
+    }
+}
+
+// Typing effect
+let message = `Happy birthday Aimi,
+
+aq just nak cakap thank you sebab dah berkawan dgn aq yg tak seberapa ni. honestly kau antara kawan yg paling baik yang aq pernah jumpa, im so lucky and im grateful for that.
+
+selama kita kawan ni, banyak kau tolong aq. bila aq perlukan kau, mesti kau ada. bila aq rasa kosong, kau teman aq. bila aq sedih, mesti kau ada.
+
+so thank you.. thank you sbb jadi kawan yg baik, aq harap aq pun dapat buat benda yg sama kat kau.
+
+aq ingat lagi waktu first kite jumpe kt hutan. kau yg tegur aq pdhl x kenal pun, and lepas sembang lama smpai aq disconnect kau boleh plk gi add aq HAHA.. x sangka sbb x pernah lagi ade org buat mcm tu so its really precious to me.
+
+i remember the days when we played every day, every night.. when we played roblox together. *sigh* the memories..
+
+and aq nak amik peluang ni utk minta maaf. even tho bnyk kali dh kau dgr ni but trust me setiap kali aq cakap bende ni I really mean it.
+
+I'm sorry.. sorry sbb x dapat jadi kawan yg baik utk kau. sorry sbb x layan kau dgn baik, bnyk salah aq dekat kau and aq harap kau dpt maafkan aq.
+
+but other than that, aq doakan kau yg baik ii je. goodluck with your spm and your education.
+
+aq doakan kau dimurahkan rezeki, dipermudahkan urusan, berjaya dunia akhirat, Ameen. semoga dapat keputusan yg cemerlang dlm spm.
+
+nnti dh habis spm jgn lupa aq plk, share ii la sikit result haha.
+
+I hope our friendship goes a long way.
+
+Alright, tu je kot. Take care.
+
+And again.. happy birthday, Aimi 🐱💕`;
+
+function typeText(text, i=0) {
+    if(i < text.length){
+        document.getElementById("text").innerHTML += text.charAt(i);
+        setTimeout(()=>typeText(text, i+1), 20);
+    }
+}
+
+// Start everything
+function startSurprise(){
+    document.getElementById("popup").style.display="block";
+    document.getElementById("text").innerHTML="";
+    typeText(message);
+    confetti();
+    document.getElementById("music").play();
+}
+
+// Music toggle
+function toggleMusic(){
+    let m=document.getElementById("music");
+    if(m.paused) m.play();
+    else m.pause();
+}
+</script>
+
+</body>
+</html>
