@@ -1,52 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Happy Birthday 🎂</title>
-  <style>
-    body {
-      text-align: center;
-      font-family: Comic Sans MS;
-      background: linear-gradient(to right, pink, lavender);
-      color: white;
-    }
-
-    h1 {
-      margin-top: 100px;
-      font-size: 50px;
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0); }
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 20px;
-      border: none;
-      border-radius: 10px;
-      background: white;
-      color: pink;
-      cursor: pointer;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Happy Birthday Aimi Nadhirah!</title>
+    <style>
+        body {
+            background-color: #f0e68c;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #f77b7c;
+        }
+        button {
+            background-color: #f77b7c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff5252;
+        }
+    </style>
 </head>
-
 <body>
-  <h1>🎉 Happy Birthday!!! 🎉</h1>
-  <p>You are amazing and I hope your day is full of happiness 💖</p>
-
-  <button onclick="showMessage()">Click me 💌</button>
-
-  <p id="secret"></p>
-
-  <script>
-    function showMessage() {
-      document.getElementById("secret").innerHTML =
-        "Surprise!!! I made this just for you 💕";
-    }
-  </script>
+    <h1>Happy Birthday Aimi Nadhirah!</h1>
+    <p>Wishing you a day filled with love, joy, and lots of furry friends!</p>
+    <button onclick="revealMessage()">Click me for a surprise!</button>
+    <p id="personal-message" style="display:none;"></p>
+    <script>
+        function revealMessage() {
+            const message = "Dear Aimi,\nHappy Birthday to you! On this special day, I hope you receive all the love and happiness you deserve. Remember, you are loved as much as a cat loves its nap!\nLove, Your Secret Admirer";
+            document.getElementById('personal-message').innerText = message;
+            document.getElementById('personal-message').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
