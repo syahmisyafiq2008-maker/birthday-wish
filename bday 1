@@ -5,85 +5,146 @@
 <title>Happy Birthday Aimi 🐱</title>
 
 <style>
-    body {
-        font-family: 'Comic Sans MS', cursive;
-        background: #ffeef2;
-        text-align: center;
-        padding: 30px;
-    }
+body {
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive;
+    background: linear-gradient(135deg, #ffeef2, #e0f7fa);
+    overflow-x: hidden;
+    text-align: center;
+}
 
-    h1 {
-        color: #ff6b81;
-    }
+h1 {
+    color: #ff4d6d;
+    margin-top: 30px;
+}
 
-    .cat {
-        font-size: 80px;
-    }
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    width: 70%;
+    margin: auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
 
-    .card {
-        background: white;
-        padding: 20px;
-        border-radius: 20px;
-        width: 70%;
-        margin: auto;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
+button {
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+}
 
-    button {
-        background: #ff6b81;
-        color: white;
-        border: none;
-        padding: 15px 25px;
-        border-radius: 20px;
-        font-size: 16px;
-        cursor: pointer;
-        margin-top: 20px;
-    }
+button:hover {
+    background: #ff2e55;
+}
 
-    button:hover {
-        background: #ff4757;
-    }
+/* Floating cats */
+.cat {
+    position: absolute;
+    font-size: 30px;
+    animation: float 10s linear infinite;
+}
 
-    #note {
-        display: none;
-        margin-top: 20px;
-        text-align: left;
-        white-space: pre-line;
-    }
+@keyframes float {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-10vh); }
+}
 
-    .footer {
-        margin-top: 20px;
-        font-size: 14px;
-        color: gray;
+/* Note popup */
+#popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    width: 70%;
+    max-height: 70%;
+    overflow-y: auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    text-align: left;
+}
+
+#text {
+    white-space: pre-line;
+    font-size: 14px;
+}
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: red;
+    top: 0;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
     }
+}
 </style>
 </head>
 
 <body>
 
-<div class="cat">🐱☕🍵</div>
-
-<h1>Happy 17th Birthday, Aimi Nadhirah! 🎉</h1>
+<h1>🎉 Happy 17th Birthday, Aimi Nadhirah! 🐱☕🍵</h1>
 
 <div class="card">
     <p>
-        To someone who is hardworking, kind-hearted, and deserves all the happiness in the world 💕  
-        Enjoy your special day on May 1st!
+        To a hardworking, kind-hearted girl who deserves all the happiness 💕<br>
+        May 1st is all yours ✨
     </p>
 
-    <button onclick="showNote()">Click me 🐾</button>
-
-    <div id="note"></div>
+    <button onclick="startSurprise()">Unlock Surprise 🐾</button>
+    <button onclick="toggleMusic()">🎵 Toggle Music</button>
 </div>
 
-<div class="footer">
-    Made with ☕ + 🍵 + 🐱
+<!-- Popup Note -->
+<div id="popup">
+    <h3>💌 A message for you</h3>
+    <p id="text"></p>
 </div>
+
+<!-- Music -->
+<audio id="music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3">
+</audio>
 
 <script>
-function showNote() {
-    document.getElementById("note").style.display = "block";
-    document.getElementById("note").innerText = `Happy birthday Aimi,
+// Floating cats generator
+for(let i=0;i<15;i++){
+    let cat=document.createElement("div");
+    cat.className="cat";
+    cat.innerText="🐱";
+    cat.style.left=Math.random()*100+"vw";
+    cat.style.animationDuration=(5+Math.random()*10)+"s";
+    document.body.appendChild(cat);
+}
+
+// Confetti
+function confetti() {
+    for(let i=0;i<80;i++){
+        let c=document.createElement("div");
+        c.className="confetti";
+        c.style.left=Math.random()*100+"vw";
+        c.style.backgroundColor=`hsl(${Math.random()*360},100%,70%)`;
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),3000);
+    }
+}
+
+// Typing effect
+let message = `Happy birthday Aimi,
 
 aq just nak cakap thank you sebab dah berkawan dgn aq yg tak seberapa ni. honestly kau antara kawan yg paling baik yang aq pernah jumpa, im so lucky and im grateful for that.
 
@@ -110,6 +171,28 @@ I hope our friendship goes a long way.
 Alright, tu je kot. Take care.
 
 And again.. happy birthday, Aimi 🐱💕`;
+
+function typeText(text, i=0) {
+    if(i < text.length){
+        document.getElementById("text").innerHTML += text.charAt(i);
+        setTimeout(()=>typeText(text, i+1), 20);
+    }
+}
+
+// Start everything
+function startSurprise(){
+    document.getElementById("popup").style.display="block";
+    document.getElementById("text").innerHTML="";
+    typeText(message);
+    confetti();
+    document.getElementById("music").play();
+}
+
+// Music toggle
+function toggleMusic(){
+    let m=document.getElementById("music");
+    if(m.paused) m.play();
+    else m.pause();
 }
 </script>
 
