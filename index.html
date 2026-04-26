@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Aimi 🐱</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive;
+    text-align: center;
+    overflow-x: hidden;
+    background: linear-gradient(-45deg,#ffeef2,#e0f7fa,#fff5e6,#f0fff0);
+    background-size: 400% 400%;
+    animation: bg 12s ease infinite;
+}
+
+@keyframes bg {
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+h1 { color:#ff4d6d; }
+
+.card {
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    width:70%;
+    margin:auto;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+button {
+    background:#ff4d6d;
+    color:white;
+    border:none;
+    padding:15px 25px;
+    border-radius:25px;
+    cursor:pointer;
+    margin:10px;
+}
+
+/* POPUP */
+#popup {
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background:rgba(0,0,0,0.65);
+    z-index:9999;
+}
+
+#popupBox {
+    background:white;
+    width:70%;
+    max-height:80%;
+    overflow:auto;
+    margin:5% auto;
+    padding:20px;
+    border-radius:20px;
+    text-align:left;
+}
+
+#text { white-space:pre-line; }
+
+/* BACKGROUND */
+.floatCat {
+    position:absolute;
+    font-size:28px;
+    animation:float 10s linear infinite;
+    z-index:1;
+}
+
+@keyframes float {
+    from{transform:translateY(100vh);}
+    to{transform:translateY(-10vh);}
+}
+
+.spark {
+    position:fixed;
+    animation:fly 8s linear infinite;
+    z-index:1;
+}
+
+@keyframes fly {
+    to{transform:translateY(-100vh);opacity:0;}
+}
+
+/* CAT */
+#bigCat {
+    position: fixed;
+    font-size: 90px;
+    cursor: pointer;
+    user-select: none;
+    z-index:5;
+    transition: left 0.4s, top 0.4s, transform 0.2s;
+}
+
+.bounce {
+    animation: bounce 0.3s;
+}
+
+@keyframes bounce {
+    50% { transform: scale(1.25); }
+}
+
+/* CONFETTI */
+.confetti {
+    position:fixed;
+    width:8px;
+    height:8px;
+    z-index:9998;
+    animation:fall 3s linear forwards;
+}
+
+@keyframes fall {
+    0% { transform: translateY(0); opacity:1; }
+    100% { transform: translateY(110vh); opacity:0; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎉 Happy 17th Birthday, Aimi Nadhirah 🐱</h1>
+
+<div class="card">
+<p>For someone kind, hardworking & special 💕</p>
+<button onclick="openMsg()">Unlock Surprise 🐾</button>
+</div>
+
+<!-- POPUP -->
+<div id="popup">
+    <div id="popupBox">
+        <h3>💌 Message for Aimi</h3>
+        <p id="text"></p>
+        <button onclick="closeMsg()">Close 💕</button>
+    </div>
+</div>
+
+<!-- CAT -->
+<div id="bigCat" onclick="moveCat()">😺</div>
+
+<script>
+
+/* floating cats */
+for(let i=0;i<15;i++){
+ let c=document.createElement("div");
+ c.className="floatCat";
+ c.innerText="🐱";
+ c.style.left=Math.random()*100+"vw";
+ c.style.animationDuration=(5+Math.random()*10)+"s";
+ document.body.appendChild(c);
+}
+
+/* sparkles */
+for(let i=0;i<25;i++){
+ let s=document.createElement("div");
+ s.className="spark";
+ s.innerHTML="✨";
+ s.style.left=Math.random()*100+"vw";
+ s.style.top=Math.random()*100+"vh";
+ document.body.appendChild(s);
+}
+
+/* confetti */
+function confetti(){
+ for(let i=0;i<80;i++){
+  let c=document.createElement("div");
+  c.className="confetti";
+  c.style.left=Math.random()*100+"vw";
+  c.style.top="-10px";
+  c.style.background=`hsl(${Math.random()*360},100%,70%)`;
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),4000);
+ }
+}
+
+/* YOUR ORIGINAL NOTE (UNCHANGED) */
+let message = `Happy birthday Aimi,
+
+aq just nak cakap thank you sebab dah berkawan dgn aq yg tak seberapa ni. honestly kau antara kawan yg paling baik yang aq pernah jumpa, im so lucky and im grateful for that. honestly kau antara kawan yg paling baik yang aq pernah jumpa, im so lucky and im grateful for that.
+
+selama kita kawan ni, banyak kau tolong aq. bila aq perlukan kau, mesti kau ada. bila aq rasa kosong, kau teman aq. bila aq sedih, mesti kau ada. so thank you.. thank you sbb jadi kawan yg baik, aq harap aq pun dapat buat bende yg sama kat kau.
+
+aq ingat lagi waktu first kite jumpe kt hutan. kau yg tegur aq pdhl x kenal pun, and lepas sembang lama smpai aq disconnect kau boleh plk gi add aq HAHA.. x sangka sbb x pernah lagi ade org buat mcm tu so its really precious to me.
+
+i remember the days when we played every day, every night.. when we played roblox together. *sigh* the memories..
+
+and aq nak amik peluang ni utk minta maaf , even tho bnyk kali dh kau dgr ni but trust me yang setiap kali aq cakap bende ni I really mean it, I'm sorry.. sorry sbb x dapat jadi kawan yg baik utk kau. sorry sbb x layan kau dgn baik, bnyk salah aq dekat kau and aq harap kau dpt maafkan aq. I'm sorry..
+
+but other than that. aq doakan kau yg baik ii je. goodluck with your spm and your education. aq doakan kau dimurahkan rezeki, dipermudahkan urusan, berjaya dunia akhirat, Ameen. semoga dapat keputusan yg cemerlang dlm spm. nnti dh habis spm jgn lupa aq plk, share ii la sikit result haha.
+
+I hope our friendship goes a long way. Alright, tu je kot. Take care.
+
+And again.. happy birthday, Aimi 🐱💕`;
+
+/* typing */
+function typeText(text,i=0){
+ if(i<text.length){
+  document.getElementById("text").innerHTML += text.charAt(i);
+  setTimeout(()=>typeText(text,i+1),18);
+ }
+}
+
+/* open popup */
+function openMsg(){
+ document.getElementById("popup").style.display="block";
+ document.getElementById("text").innerHTML="";
+ typeText(message);
+ confetti();
+}
+
+/* CAT TELEPORT + EMOTION */
+let cats=["😺","😸","😻","🙀","😼","😿"];
+
+function moveCat(){
+ let cat=document.getElementById("bigCat");
+
+ let x=Math.random()*(window.innerWidth-100);
+ let y=Math.random()*(window.innerHeight-120);
+
+ cat.style.left=x+"px";
+ cat.style.top=y+"px";
+
+ let i=Math.floor(Math.random()*cats.length);
+ cat.innerText=cats[i];
+
+ cat.classList.add("bounce");
+ setTimeout(()=>cat.classList.remove("bounce"),300);
+
+ confetti();
+}
+
+/* FIXED CLOSE BUTTON */
+function closeMsg(){
+ document.getElementById("popup").style.display="none";
+ confetti();
+}
+
+/* init cat position */
+window.onload = () => {
+ let cat=document.getElementById("bigCat");
+ cat.style.left="80vw";
+ cat.style.top="70vh";
+};
+
+</script>
+
+</body>
+</html>
