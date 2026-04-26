@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Aimi 🐱</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive;
+    text-align: center;
+    overflow-x: hidden;
+    background: linear-gradient(-45deg,#ffeef2,#e0f7fa,#fff5e6,#f0fff0);
+    background-size: 400% 400%;
+    animation: bg 12s ease infinite;
+}
+
+@keyframes bg {
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+h1 { color:#ff4d6d; }
+
+.card {
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    width:70%;
+    margin:auto;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+button {
+    background:#ff4d6d;
+    color:white;
+    border:none;
+    padding:15px 25px;
+    border-radius:25px;
+    cursor:pointer;
+    margin:10px;
+}
+
+/* POPUP */
+#popup {
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background:rgba(0,0,0,0.65);
+    z-index:9999;
+}
+
+#popupBox {
+    background:white;
+    width:70%;
+    max-height:80%;
+    overflow:auto;
+    margin:5% auto;
+    padding:20px;
+    border-radius:20px;
+    text-align:left;
+}
+
+#text { white-space:pre-line; }
+
+/* BACKGROUND */
+.floatCat {
+    position:absolute;
+    font-size:28px;
+    animation:float 10s linear infinite;
+    z-index:1;
+}
+
+@keyframes float {
+    from{transform:translateY(100vh);}
+    to{transform:translateY(-10vh);}
+}
+
+.spark {
+    position:fixed;
+    animation:fly 8s linear infinite;
+    z-index:1;
+}
+
+@keyframes fly {
+    to{transform:translateY(-100vh);opacity:0;}
+}
+
+/* CAT */
+#bigCat {
+    position: fixed;
+    font-size: 90px;
+    cursor: pointer;
+    user-select: none;
+    z-index:5;
+    transition: transform 0.2s, left 0.4s, top 0.4s;
+}
+
+.bounce {
+    animation: bounce 0.3s;
+}
+
+@keyframes bounce {
+    50% { transform: scale(1.25); }
+}
+
+/* CONFETTI */
+.confetti {
+    position:fixed;
+    width:8px;
+    height:8px;
+    z-index:9998;
+    animation:fall 3s linear forwards;
+}
+
+@keyframes fall {
+    0% { transform: translateY(0); opacity:1; }
+    100% { transform: translateY(110vh); opacity:0; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎉 Happy 17th Birthday, Aimi Nadhirah 🐱</h1>
+
+<div class="card">
+<p>For someone kind, hardworking & special 💕</p>
+<button onclick="openMsg()">Unlock Surprise 🐾</button>
+</div>
+
+<!-- POPUP -->
+<div id="popup">
+    <div id="popupBox">
+        <h3>💌 Message for Aimi</h3>
+        <p id="text"></p>
+        <button onclick="closeMsg()">Close 💕</button>
+    </div>
+</div>
+
+<!-- CAT -->
+<div id="bigCat" onclick="moveCat()">😺</div>
+
+<script>
+
+/* floating cats */
+for(let i=0;i<15;i++){
+ let c=document.createElement("div");
+ c.className="floatCat";
+ c.innerText="🐱";
+ c.style.left=Math.random()*100+"vw";
+ c.style.animationDuration=(5+Math.random()*10)+"s";
+ document.body.appendChild(c);
+}
+
+/* sparkles */
+for(let i=0;i<25;i++){
+ let s=document.createElement("div");
+ s.className="spark";
+ s.innerHTML="✨";
+ s.style.left=Math.random()*100+"vw";
+ s.style.top=Math.random()*100+"vh";
+ document.body.appendChild(s);
+}
+
+/* confetti */
+function confetti(){
+ for(let i=0;i<80;i++){
+  let c=document.createElement("div");
+  c.className="confetti";
+  c.style.left=Math.random()*100+"vw";
+  c.style.top="-10px";
+  c.style.background=`hsl(${Math.random()*360},100%,70%)`;
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),4000);
+ }
+}
+
+/* ✍️ REWRITTEN MESSAGE (same meaning, smoother flow) */
+let message = `Happy birthday Aimi,
+
+I just want to say thank you for being a friend to someone like me. Honestly, you are one of the kindest people I’ve ever met, and I’m really grateful to have known you.
+
+During our friendship, you’ve helped me a lot. Whenever I needed someone, you were there. When I felt empty, you stayed with me. When I was sad, you never left me alone. So thank you… really, thank you for being such a good friend. I hope I can be the same kind of friend to you as well.
+
+I still remember the first time we met in the forest. You were the one who talked to me even though we didn’t know each other, and after talking for so long until I disconnected, you still went and added me on Roblox HAHA. I’ve never really had someone do that before, so it’s something really special to me.
+
+I also remember the days we used to play every day and every night… those Roblox memories *sigh*.
+
+And I want to take this chance to say sorry too. Even though you’ve heard it many times, I truly mean it every time I say it. I’m sorry for not being the best friend to you, for the times I didn’t treat you well, and for my mistakes. I really hope you can forgive me.
+
+But other than that, I genuinely wish you the best in everything. Good luck with your SPM and your studies. I pray you are blessed with success, ease in everything you do, and happiness in both this world and the hereafter. May you get amazing results in SPM. And after everything is over, don’t forget me okay? Share your results with me haha.
+
+I hope our friendship lasts a long time. Take care.
+
+And again… happy birthday, Aimi 🐱💕`;
+
+/* typing */
+function typeText(text,i=0){
+ if(i<text.length){
+  document.getElementById("text").innerHTML += text.charAt(i);
+  setTimeout(()=>typeText(text,i+1),18);
+ }
+}
+
+/* open */
+function openMsg(){
+ document.getElementById("popup").style.display="block";
+ document.getElementById("text").innerHTML="";
+ typeText(message);
+ confetti();
+}
+
+/* 🐱 TELEPORT CAT */
+function moveCat(){
+ let cat = document.getElementById("bigCat");
+
+ let x = Math.random() * (window.innerWidth - 100);
+ let y = Math.random() * (window.innerHeight - 120);
+
+ cat.style.left = x + "px";
+ cat.style.top = y + "px";
+
+ cat.classList.add("bounce");
+ setTimeout(()=>cat.classList.remove("bounce"),300);
+
+ confetti();
+}
+
+/* init cat position */
+window.onload = () => {
+ let cat = document.getElementById("bigCat");
+ cat.style.left = "80vw";
+ cat.style.top = "70vh";
+};
+
+</script>
+
+</body>
+</html>
