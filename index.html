@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Aimi 🐱</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive;
+    text-align: center;
+    overflow-x: hidden;
+    background: linear-gradient(-45deg, #ffeef2, #e0f7fa, #fff5e6, #f0fff0);
+    background-size: 400% 400%;
+    animation: bg 12s ease infinite;
+}
+
+@keyframes bg {
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+h1 { color:#ff4d6d; }
+
+.card {
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    width:70%;
+    margin:auto;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+button {
+    background:#ff4d6d;
+    color:white;
+    border:none;
+    padding:15px 25px;
+    border-radius:25px;
+    cursor:pointer;
+    margin:10px;
+}
+
+/* POPUP */
+#popup {
+    display:none;
+    position:fixed;
+    top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    width:70%;
+    max-height:70%;
+    overflow:auto;
+    text-align:left;
+}
+
+#text { white-space:pre-line; }
+
+/* FLOATING CATS */
+.catFloat {
+    position:absolute;
+    font-size:28px;
+    animation:float 12s linear infinite;
+}
+
+@keyframes float {
+    from {transform:translateY(100vh);}
+    to {transform:translateY(-10vh);}
+}
+
+/* SPARKLES */
+.spark {
+    position:fixed;
+    animation:fly 8s linear infinite;
+}
+
+@keyframes fly {
+    to {transform:translateY(-100vh); opacity:0;}
+}
+
+/* CONFETTI */
+.confetti {
+    position:fixed;
+    width:8px;
+    height:8px;
+    top:0;
+    animation:fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to {transform:translateY(100vh); opacity:0;}
+}
+
+/* ===================== */
+/* 🐱 REAL CAT DESIGN */
+/* ===================== */
+
+#cat {
+    position: fixed;
+    right: 40px;
+    bottom: 30px;
+    width: 140px;
+    height: 120px;
+    cursor: pointer;
+}
+
+/* head */
+.cat-head {
+    width: 90px;
+    height: 80px;
+    background: #ffd6a5;
+    border-radius: 50%;
+    position: absolute;
+    left: 25px;
+    top: 0;
+}
+
+/* ears */
+.ear {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 25px solid #ffd6a5;
+    position: absolute;
+    top: -15px;
+}
+
+.ear.left { left: 10px; transform: rotate(-20deg); }
+.ear.right { right: 10px; transform: rotate(20deg); }
+
+/* eyes */
+.eye {
+    width: 10px;
+    height: 10px;
+    background: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 30px;
+}
+
+.eye.left { left: 25px; }
+.eye.right { right: 25px; }
+
+/* mouth */
+.mouth {
+    width: 15px;
+    height: 8px;
+    border-bottom: 2px solid black;
+    border-radius: 50%;
+    position: absolute;
+    top: 45px;
+    left: 37px;
+}
+
+/* body */
+.cat-body {
+    width: 110px;
+    height: 70px;
+    background: #ffd6a5;
+    border-radius: 60px;
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+}
+
+/* tail */
+.tail {
+    width: 50px;
+    height: 10px;
+    background: #ffd6a5;
+    position: absolute;
+    bottom: 20px;
+    right: -20px;
+    border-radius: 20px;
+    transform-origin: left;
+}
+
+/* animations */
+.blink {
+    animation: blink 0.4s;
+}
+
+@keyframes blink {
+    50% { transform: scaleY(0.1); }
+}
+
+.wag {
+    animation: wag 0.4s infinite alternate;
+}
+
+@keyframes wag {
+    from { transform: rotate(-20deg); }
+    to { transform: rotate(20deg); }
+}
+
+.jump {
+    animation: jump 0.3s;
+}
+
+@keyframes jump {
+    50% { transform: translateY(-10px); }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎉 Happy 17th Birthday Aimi Nadhirah 🐱</h1>
+
+<div class="card">
+<p>For someone kind, hardworking & special 💕</p>
+<button onclick="openMsg()">Unlock Surprise 🐾</button>
+</div>
+
+<div id="popup">
+<h3>💌 Message for Aimi</h3>
+<p id="text"></p>
+</div>
+
+<!-- 🐱 CAT -->
+<div id="cat" onclick="catClick()">
+    <div class="ear left"></div>
+    <div class="ear right"></div>
+
+    <div class="cat-head">
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="mouth"></div>
+    </div>
+
+    <div class="cat-body"></div>
+    <div class="tail" id="tail"></div>
+</div>
+
+<script>
+
+/* floating cats */
+for(let i=0;i<15;i++){
+ let c=document.createElement("div");
+ c.className="catFloat";
+ c.innerText="🐱";
+ c.style.left=Math.random()*100+"vw";
+ c.style.animationDuration=(5+Math.random()*10)+"s";
+ document.body.appendChild(c);
+}
+
+/* sparkles */
+for(let i=0;i<25;i++){
+ let s=document.createElement("div");
+ s.className="spark";
+ s.innerHTML="✨";
+ s.style.left=Math.random()*100+"vw";
+ s.style.top=Math.random()*100+"vh";
+ document.body.appendChild(s);
+}
+
+/* confetti */
+function confetti(){
+ for(let i=0;i<80;i++){
+  let c=document.createElement("div");
+  c.className="confetti";
+  c.style.left=Math.random()*100+"vw";
+  c.style.background=`hsl(${Math.random()*360},100%,70%)`;
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),3000);
+ }
+}
+
+/* FULL MESSAGE (unchanged) */
+let message = `Happy birthday Aimi,
+
+aq just nak cakap thank you sebab dah berkawan dgn aq yg tak seberapa ni. honestly kau antara kawan yg paling baik yang aq pernah jumpa, im so lucky and im grateful for that.
+
+selama kita kawan ni, banyak kau tolong aq. bila aq perlukan kau, mesti kau ada. bila aq rasa kosong, kau teman aq. bila aq sedih, mesti kau ada.
+
+so thank you.. thank you sbb jadi kawan yg baik, aq harap aq pun dapat buat bende yg sama kat kau.
+
+aq ingat lagi waktu first kite jumpe kt hutan. kau yg tegur aq pdhl x kenal pun, and lepas sembang lama smpai aq disconnect kau boleh plk gi add aq HAHA..
+
+i remember roblox days.. *sigh*
+
+I'm sorry for everything I did wrong.
+
+Goodluck for your SPM.
+
+Take care.
+
+And again.. happy birthday, Aimi 🐱💕`;
+
+/* typing */
+function typeText(text,i=0){
+ if(i<text.length){
+  document.getElementById("text").innerHTML+=text.charAt(i);
+  setTimeout(()=>typeText(text,i+1),20);
+ }
+}
+
+/* open */
+function openMsg(){
+ document.getElementById("popup").style.display="block";
+ document.getElementById("text").innerHTML="";
+ typeText(message);
+ confetti();
+}
+
+/* CAT INTERACTIONS */
+let moods=["normal","happy","love","shock"];
+let current=0;
+
+function catClick(){
+ let cat=document.getElementById("cat");
+ let tail=document.getElementById("tail");
+
+ current=(current+1)%moods.length;
+
+ cat.classList.add("jump");
+ setTimeout(()=>cat.classList.remove("jump"),300);
+
+ // mood changes
+ if(current===0){
+  tail.classList.remove("wag");
+ } 
+ if(current===1){
+  tail.classList.add("wag");
+ }
+ if(current===2){
+  tail.classList.add("wag");
+ }
+ if(current===3){
+  tail.classList.remove("wag");
+ }
+
+ // blink effect
+ document.querySelectorAll(".eye").forEach(e=>{
+  e.classList.add("blink");
+  setTimeout(()=>e.classList.remove("blink"),300);
+ });
+}
+
+</script>
+
+</body>
+</html>
