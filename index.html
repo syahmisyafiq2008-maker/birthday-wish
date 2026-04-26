@@ -117,7 +117,7 @@ button:hover {
 
 <!-- Music -->
 <audio id="music" loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -190,9 +190,16 @@ function startSurprise(){
 
 // Music toggle
 function toggleMusic(){
-    let m=document.getElementById("music");
-    if(m.paused) m.play();
-    else m.pause();
+    let m = document.getElementById("music");
+
+    if (m.paused) {
+        m.play().catch(err => {
+            alert("Tap the screen once first, then try again 🎵");
+        });
+    } else {
+        m.pause();
+    }
+}
 }
 </script>
 
