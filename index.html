@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Aimi 🐱</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive;
+    text-align: center;
+    overflow-x: hidden;
+    background: linear-gradient(-45deg, #ffeef2, #e0f7fa, #fff5e6, #f0fff0);
+    background-size: 400% 400%;
+    animation: bg 12s ease infinite;
+}
+
+@keyframes bg {
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+h1 { color:#ff4d6d; }
+
+.card {
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    width:70%;
+    margin:auto;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+button {
+    background:#ff4d6d;
+    color:white;
+    border:none;
+    padding:15px 25px;
+    border-radius:25px;
+    cursor:pointer;
+    margin:10px;
+}
+
+#popup {
+    display:none;
+    position:fixed;
+    top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    width:70%;
+    max-height:70%;
+    overflow:auto;
+    text-align:left;
+}
+
+#text { white-space:pre-line; }
+
+/* CAT */
+#bigCat {
+    position: fixed;
+    right: 20px;
+    bottom: 10px;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+}
+
+.cat-face {
+    font-size: 70px;
+}
+
+.cat-body {
+    font-size: 80px;
+    margin-top: -20px;
+}
+
+.bounce {
+    animation: bounce 0.4s;
+}
+
+@keyframes bounce {
+    50% { transform: scale(1.2); }
+}
+
+/* floating cats */
+.cat {
+    position:absolute;
+    font-size:30px;
+    animation:float 10s linear infinite;
+}
+
+@keyframes float {
+    from {transform:translateY(100vh);}
+    to {transform:translateY(-10vh);}
+}
+
+/* sparkles */
+@keyframes spark {
+    to { transform: translateY(-100vh); }
+}
+
+/* confetti */
+.confetti {
+    position:fixed;
+    width:10px;
+    height:10px;
+    top:0;
+    animation:fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to { transform:translateY(100vh); opacity:0; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎉 Happy 17th Birthday, Aimi Nadhirah! 🐱☕🍵</h1>
+
+<div class="card">
+<p>For someone hardworking & kind-hearted 💕</p>
+<button onclick="startSurprise()">Unlock Surprise 🐾</button>
+<button onclick="toggleMusic()">🎵 Music</button>
+</div>
+
+<div id="popup">
+<h3>💌 A message for you</h3>
+<p id="text"></p>
+</div>
+
+<!-- CAT -->
+<div id="bigCat" onclick="changeCat()">
+    <div class="cat-face" id="catFace">😺</div>
+    <div class="cat-body">🧸</div>
+</div>
+
+<!-- AUDIO -->
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=lofi-study-112191.mp3">
+</audio>
+
+<audio id="typingSound">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_0f1c9a9c63.mp3?filename=keyboard-typing-112189.mp3">
+</audio>
+
+<audio id="meowSound">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7c1d7d1c4e.mp3?filename=cat-meow-6226.mp3">
+</audio>
+
+<script>
+
+// floating cats
+for(let i=0;i<15;i++){
+ let c=document.createElement("div");
+ c.className="cat";
+ c.innerText="🐱";
+ c.style.left=Math.random()*100+"vw";
+ c.style.animationDuration=(5+Math.random()*10)+"s";
+ document.body.appendChild(c);
+}
+
+// sparkles
+for(let i=0;i<30;i++){
+ let s=document.createElement("div");
+ s.innerHTML="✨";
+ s.style.position="fixed";
+ s.style.left=Math.random()*100+"vw";
+ s.style.top=Math.random()*100+"vh";
+ s.style.animation=`spark ${5+Math.random()*10}s linear infinite`;
+ document.body.appendChild(s);
+}
+
+// confetti
+function confetti(){
+ for(let i=0;i<80;i++){
+  let c=document.createElement("div");
+  c.className="confetti";
+  c.style.left=Math.random()*100+"vw";
+  c.style.backgroundColor=`hsl(${Math.random()*360},100%,70%)`;
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),3000);
+ }
+}
+
+// FULL MESSAGE
+let message = `Happy birthday Aimi,
+
+aq just nak cakap thank you sebab dah berkawan dgn aq yg tak seberapa ni. honestly kau antara kawan yg paling baik yang aq pernah jumpa, im so lucky and im grateful for that. selama kita kawan ni, banyak kau tolong aq. bila aq perlukan kau, mesti kau ada. bila aq rasa kosong, kau teman aq. bila aq sedih, mesti kau ada. so thank you.. thank you sbb jadi kawan yg baik, aq harap aq pun dapat buat bende yg sama kat kau.
+
+aq ingat lagi waktu first kite jumpe kt hutan. kau yg tegur aq pdhl x kenal pun, and lepas sembang lama smpai aq disconnect kau boleh plk gi add aq HAHA.. x sangka sbb x pernah lagi ade org buat mcm tu so its really precious to me. i remember the days when we played every day, every night.. when we played roblox together. *sigh* the memories..
+
+and aq nak amik peluang ni utk minta maaf , even tho bnyk kali dh kau dgr ni but trust me yang setiap kali aq cakap bende ni I really mean it, I'm sorry.. sorry sbb x dapat jadi kawan yg baik utk kau. sorry sbb x layan kau dgn baik, bnyk salah aq dekat kau and aq harap kau dpt maafkan aq. I'm sorry..
+
+but other than that. aq doakan kau yg baik ii je. goodluck with your spm and your education. aq doakan kau dimurahkan rezeki, dipermudahkan urusan, berjaya dunia akhirat, Ameen. semoga dapat keputusan yg cemerlang dlm spm. nnti dh habis spm jgn lupa aq plk, share ii la sikit result haha.
+
+I hope our friendship goes a long way. Alright, tu je kot. Take care.
+
+And again.. happy birthday, Aimi 🐱💕`;
+
+// typing
+function typeText(text,i=0){
+ let t=document.getElementById("typingSound");
+
+ if(i<text.length){
+  document.getElementById("text").innerHTML+=text.charAt(i);
+
+  if(i%3===0){
+   t.currentTime=0;
+   t.play().catch(()=>{});
+  }
+
+  setTimeout(()=>typeText(text,i+1),20);
+ }
+}
+
+// start
+function startSurprise(){
+ document.getElementById("popup").style.display="block";
+ document.getElementById("text").innerHTML="";
+
+ let meow=document.getElementById("meowSound");
+ meow.play().catch(()=>{});
+
+ setTimeout(()=>{
+  typeText(message);
+  document.getElementById("music").play().catch(()=>{});
+ },500);
+
+ confetti();
+}
+
+// music
+function toggleMusic(){
+ let m=document.getElementById("music");
+ if(m.paused) m.play().catch(()=>{});
+ else m.pause();
+}
+
+// CAT emotions
+let catFaces=["😺","😸","😻","🙀","😼","😿"];
+
+function changeCat(){
+ let face=document.getElementById("catFace");
+ let meow=document.getElementById("meowSound");
+
+ let r=Math.floor(Math.random()*catFaces.length);
+ face.innerText=catFaces[r];
+
+ document.getElementById("bigCat").classList.add("bounce");
+ setTimeout(()=>document.getElementById("bigCat").classList.remove("bounce"),400);
+
+ meow.currentTime=0;
+ meow.play().catch(()=>{});
+}
+
+</script>
+
+</body>
+</html>
